@@ -6,16 +6,12 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-// mongoose.set("useNewUrlParser", true);
-// mongoose.set("useFindAndModify", false);
-// mongoose.set("useCreateIndex", true);
+mongoose.set("useNewUrlParser", true);
+mongoose.set("useFindAndModify", false);
+mongoose.set("useCreateIndex", true);
+mongoose.set("useUnifiedTopology", true);
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DATABASE, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-});
+mongoose.connect(process.env.DATABASE);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
