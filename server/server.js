@@ -20,9 +20,52 @@ app.use(cookieParser());
 
 // Models
 const { User } = require("./models/user");
+const { Condominium } = require("./models/condo");
 
 // Middlewares
 const { auth } = require("./middleware/auth");
+
+//================================================
+
+//                 CONDOMINIUM UNITS
+
+//================================================
+
+app.post("/api/product/condo_units", auth, (req, res) => {
+  const condo = new Condominium(req.body);
+
+  condo.save((err, doc) => {
+    if (err) return res.json({ success: false, err });
+    res.status(200).json({
+      success: true,
+      condo: doc,
+    });
+  });
+});
+
+//================================================
+
+//                  TOWNHOUSES
+
+//================================================
+
+app.post("/api/product/town_house", auth, (req, res) => {});
+
+//================================================
+
+//                  HOUSE & LOT
+
+//================================================
+
+app.post("/api/product/house", auth, (req, res) => {});
+
+//================================================
+
+//                  COMMERCIAL SPACE
+
+//================================================
+
+app.post("/api/product/commercial_space", auth, (req, res) => {});
 
 //================================================
 
